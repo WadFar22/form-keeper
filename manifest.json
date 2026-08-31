@@ -23,9 +23,7 @@
   },
   "permissions": [
     "storage", 
-    "activeTab", 
-    "scripting", 
-    "notifications",
+    "activeTab",
     "contextMenus",
     "tabs"
   ],

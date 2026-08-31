@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Form Keeper — Settings</title>
+<link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="page-header" style="display: flex; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <h1>Form Keeper</h1>
+        </div>
+        <p class="tagline">Everything below lives only in this browser, on this device. Nothing is ever uploaded anywhere.</p>
+      </div>
+      <!-- User Guide link back in the top right -->
+      <a href="../guide.html" target="_blank" style="color: #4fd1b0; text-decoration: none; font-weight: 600; font-size: 14px;">User Guide</a>
+    </header>
+
+    <nav class="options-tabs">
+      <button class="opt-tab active" data-target="tab-settings">General Settings & Data Control</button>
+      <button class="opt-tab" data-target="tab-data">Saved Forms & Profiles</button>
+    </nav>
+
+    <!-- TAB 1: SETTINGS -->
+    <div id="tab-settings" class="tab-pane active">
+      <section class="card">
+        <h2>How it works</h2>
+        <div class="setting-row">
+          <div>
+            <div class="setting-title">Watch for fillable forms</div>
+            <div class="setting-desc">Let Form Keeper notice forms on pages you visit, so it can offer to save or refill them.</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="autoDetect" /><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="setting-title">Show a toolbar badge</div>
+            <div class="setting-desc">Put a small dot or count on the extension icon when this page has data to save or fill — click the icon to see it. Turn off for a fully silent icon.</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="autoPrompt" /><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="setting-title">Include sensitive-looking fields</div>
+            <div class="setting-desc">Password fields are <strong>never</strong> saved, no exceptions. Fields that look like card numbers, CVV, or SSNs are included by default, but you can turn this off to skip them.</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="includeSensitive" /><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="setting-title">Merge Fill (Keep existing inputs)</div>
+            <div class="setting-desc">When filling a form, keep any existing inputs in fields that aren't part of your saved entry instead of clearing them.</div>
+          </div>
+          <label class="switch"><input type="checkbox" id="mergeFill" /><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+          <div>
+            <div class="setting-title">Auto-delete old entries</div>
+            <div class="setting-desc">Automatically remove saved forms after a while.</div>
+          </div>
+          <select id="retentionDays" class="select">
+            <option value="0">Never</option>
+            <option value="30">After 30 days</option>
+            <option value="90">After 90 days</option>
+            <option value="180">After 180 days</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Your data</h2>
+        <p class="card-desc">Back up, restore, or wipe everything Form Keeper has stored.</p>
+        <div class="btn-row">
+          <button id="exportBtn" class="btn btn-primary">Export as JSON</button>
+          <button id="exportCsvBtn" class="btn btn-primary">Export as CSV</button>
+          <label class="btn btn-ghost file-label">
+            Import from file
+            <input type="file" id="importInput" accept=".json,.csv,application/json,text/csv" hidden />
+          </label>
+          <button id="clearAllBtn" class="btn btn-danger">Delete everything</button>
+        </div>
+        <p id="dataStatus" class="status"></p>
+      </section>
+    </div>
+
+    <!-- TAB 2: DATA -->
+    <div id="tab-data" class="tab-pane" hidden>
+      <section class="card">
+        <div class="card-header-row">
+          <h2>Global Profiles</h2>
+          <input id="browseSearch" class="search" type="text" placeholder="Search profiles or site forms..." />
+        </div>
+        <div id="profileGroups" class="site-groups"></div>
+      </section>
+
+      <section class="card">
+        <div class="card-header-row">
+          <h2>Saved site forms</h2>
+        </div>
+        <div id="siteGroups" class="site-groups"></div>
+      </section>
+    </div>
+
+    <template id="siteGroupTemplate">
+      <div class="site-group collapsed">
+        <div class="site-group-header" title="Click to collapse/expand">
+          <div class="site-title-wrap">
+            <span class="site-toggle-icon">▼</span>
+            <span class="site-name"></span>
+          </div>
+          <div class="site-header-actions">
+            <span class="site-count"></span>
+            <button class="link-btn site-clear-btn">Clear site</button>
+          </div>
+        </div>
+        <div class="site-entries"></div>
+      </div>
+    </template>
+
+    <template id="dataEntryTemplate">
+      <div class="data-entry">
+        <div class="data-entry-header">
+          <span class="data-entry-label"></span>
+          <div class="data-entry-actions">
+            <button class="link-btn rename-entry-btn" hidden>Rename</button>
+            <button class="link-btn toggle-fields-btn">View fields</button>
+            <button class="link-btn show-all-btn" hidden>Show inputs</button>
+            <button class="link-btn danger delete-entry-btn">Delete</button>
+          </div>
+        </div>
+        <div class="data-entry-meta"></div>
+        <div class="fields-panel" hidden></div>
+      </div>
+    </template>
+
+    <template id="fieldRowTemplate">
+      <div class="field-row">
+        <span class="field-name"></span>
+        <span class="field-value masked"></span>
+        <div class="field-actions">
+          <button class="link-btn copy-btn">copy</button>
+          <button class="link-btn rename-field-btn">rename</button>
+          <button class="link-btn edit-btn">edit value</button>
+          <button class="link-btn reveal-btn">show</button>
+          <button class="link-btn danger delete-field-btn">delete</button>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <script src="../src/storage-lib.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

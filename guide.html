@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Form Keeper — User Guide & Help</title>
+<style>
+  :root {
+    --bg: #0c1114;
+    --card-bg: #14191c;
+    --border: #263038;
+    --text-main: #ecf1f3;
+    --text-muted: #8fa0a8;
+    --accent: #4fd1b0;
+    --accent-glow: rgba(79, 209, 176, 0.12);
+    --badge-bg: #1c262c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .page-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .brand-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  h1 { font-size: 24px; font-weight: 700; color: #fff; }
+  h2 { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+  p { color: var(--text-muted); font-size: 14.5px; margin-bottom: 12px; }
+  p:last-child { margin-bottom: 0; }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 14px;
+  }
+
+  @media (max-width: 600px) {
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+
+  .feature-box {
+    background: #0f1417;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .feature-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .step-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--text-main);
+  }
+
+  .step-num {
+    background: var(--accent-glow);
+    color: var(--accent);
+    border: 1px solid rgba(79, 209, 176, 0.3);
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .pill {
+    display: inline-block;
+    background: var(--badge-bg);
+    color: var(--accent);
+    border: 1px solid var(--border);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .highlight-note {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-glow);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13.5px;
+    color: var(--text-main);
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page-header">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <h1>Form Keeper — User Guide</h1>
+      </div>
+      <p>A simple guide to saving time and never typing out the same forms twice.</p>
+    </header>
+
+    <section class="card">
+      <h2>Getting Started: How to Use Form Keeper</h2>
+      <p>Form Keeper works seamlessly in the background to ensure you never lose your typed data.</p>
+      <ul class="step-list">
+        <li class="step-item">
+          <span class="step-num">1</span>
+          <div><strong>Turn on Recording:</strong> Open the Form Keeper popup on any website and toggle the <strong>"Record entries for this site"</strong> switch to the ON position.</div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">2</span>
+          <div><strong>Silent Backups:</strong> As you type into any text box, the extension silently records your progress in the background as a temporary draft.</div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">3</span>
+          <div><strong>Save Your Work:</strong> Click the floating save button on the page to save instantly. Alternatively, open the extension and click <span class="pill">+ Save current form as new entry</span> to save it for that specific site, or switch to the <strong>Profiles</strong> tab and click <span class="pill">+ Save current form as a Profile</span> to save it for universal use across the web.</div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">4</span>
+          <div><strong>Crash Recovery:</strong> If the browser crashes or you accidentally close a tab, simply return to the page, open the extension, and click <strong>Restore</strong> on the green <strong style="color: var(--accent);">↻ Unsaved Draft (Recovery)</strong> entry to instantly get your typing back.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Understanding the Two Ways to Save Data</h2>
+      <p>Form Keeper organizes your saved inputs into two distinct tools to fit different situations:</p>
+      <div class="feature-grid">
+        <div class="feature-box">
+          <div class="feature-title">1. Global Profiles (Universal)</div>
+          <p>Saved across <strong>all websites</strong>. Ideal for your universal personal details (Full Name, Phone, Email, Address, Date of Birth). Form Keeper automatically maps these fields onto almost any form you encounter anywhere on the web.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-title">2. Saved Forms (Site-Specific)</div>
+          <p>Saved strictly for <strong>one specific website</strong>. Perfect for recurring forms, tax portals, or complex dashboards. It remembers the exact structure of that webpage (even distinguishing language versions like <span class="pill">/en</span> or <span class="pill">/ar</span>) for a 100% exact refill.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Right-Click Shortcuts</h2>
+      <p>You can fill entire forms or inject single pieces of data directly without opening the extension popup. Simply right-click on the webpage to access the unified menu:</p>
+      <ul class="step-list">
+        <li class="step-item">
+          <span class="step-num">✦</span>
+          <div><strong>Fill an Entire Form:</strong> Right-click and choose either <em>Fill from Saved Profile</em> or <em>Fill from Saved Forms</em>. Hover over your desired saved entry and click <strong>▶ Fill this Profile</strong> (or <strong>▶ Fill this entire form</strong>) to populate all matching boxes on the page at once.</div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">✦</span>
+          <div><strong>Fill a Single Field:</strong> Right-click directly inside a specific input box on the page. Under your Profiles or Saved Forms, bypass the main fill button and simply click the exact piece of data you want (e.g., <em>First Name: John</em>). Form Keeper will inject only that specific value into the active text box.</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Data Control: Exporting & Importing</h2>
+      <p>You have absolute control over your saved information. Access these options by clicking <strong>Settings (Manage)</strong> in the extension popup and navigating to the <em>General Settings & Data Control</em> tab.</p>
+      <div class="feature-grid">
+        <div class="feature-box">
+          <div class="feature-title">Export Options</div>
+          <p>Back up your data to your local hard drive. You can export a full <strong>JSON</strong> backup (perfect for restoring data later or moving to a new computer) or a human-readable <strong>CSV</strong> spreadsheet to review your saved fields manually.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-title">Import & Restore</div>
+          <p>Click <strong>Import from file</strong> to upload a previously saved JSON backup or a custom-formatted CSV file. Form Keeper will automatically merge the imported data with your existing entries without overwriting your current progress.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Privacy & Security</h2>
+      <ul class="step-list">
+        <li class="step-item">
+          <span class="step-num">✓</span>
+          <div><strong>100% On-Device:</strong> All of your entries and profiles live purely inside your browser's local storage. Nothing is ever sent to a remote server or cloud.</div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">✓</span>
+          <div><strong>Passwords are Never Saved:</strong> Form Keeper strictly ignores password fields under all circumstances.</div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">✓</span>
+          <div><strong>Full Deletion:</strong> You can wipe a single site's history or completely erase all stored data instantly from the Settings menu.</div>
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Form Keeper</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">Form Keeper</span>
+      </div>
+      <div class="topbar-actions" style="display: flex; gap: 8px;">
+        <button id="openGuide" class="icon-btn" title="User Guide" aria-label="User Guide">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </button>
+        <button id="openOptions" class="icon-btn" title="Settings" aria-label="Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.32.44.55.79.65.35.1.6.13.81.13H21a2 2 0 0 1 0 4h-.09c-.21 0-.46.03-.81.13-.35.1-.65.33-.79.65Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="site-toggle-wrap">
+      <div class="site-toggle-info">
+        <span class="site-toggle-label">Record entries for this site</span>
+        <span class="site-toggle-host" id="siteToggleHost"></span>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="siteToggle" />
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+
+    <!-- BUTTON RELOCATED ABOVE TABS -->
+    <div class="save-current-wrap">
+      <div id="btnWrapper" style="display: block;">
+        <button id="saveCurrentBtn" class="btn-save-current" disabled>+ Save current form as new entry</button>
+      </div>
+      <div id="saveHint" style="font-size: 11.5px; color: #8fa0a8; text-align: center; margin-top: 8px; display: none;">Start filling any field on the page to activate this button.</div>
+    </div>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="site" role="tab">This site</button>
+      <button class="tab" data-tab="all" role="tab">All sites</button>
+      <button class="tab" data-tab="profiles" role="tab">Profiles</button>
+    </nav>
+
+    <div class="search-wrap" id="allSearchWrap" hidden>
+      <input id="searchInput" type="text" placeholder="Search saved forms..." />
+    </div>
+
+    <main id="listContainer" class="list"></main>
+
+    <template id="entryTemplate">
+      <div class="entry">
+        <div class="entry-main">
+          <div class="entry-label"></div>
+          <div class="entry-meta"></div>
+        </div>
+        <div class="entry-actions">
+          <button class="mini-btn fill-btn">Fill</button>
+          <button class="mini-btn icon-only rename-btn" title="Rename">✎</button>
+          <button class="mini-btn icon-only danger delete-btn" title="Delete">🗑</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="emptyTemplate">
+      <div class="empty">
+        <div class="empty-icon">🗂</div>
+        <p class="empty-title">Nothing saved yet</p>
+        <p class="empty-body">Fill out a form, then use "Save current form as new entry" above to remember it.</p>
+      </div>
+    </template>
+
+    <footer class="footer">
+      <span class="footer-note">Stored only on this device</span>
+      <a href="#" id="manageLink">Manage data</a>
+    </footer>
+  </div>
+
+  <script src="../src/storage-lib.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

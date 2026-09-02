@@ -14,7 +14,7 @@ const FK_SITES_KEY = "fk_sites";
 const FK_DEFAULT_SETTINGS = {
   autoDetect: true,
   autoPrompt: true,
-  includeSensitive: true,
+  includeSensitive: false,
   mergeFill: false,
   retentionDays: 0,
 };

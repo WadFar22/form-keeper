@@ -48,8 +48,8 @@ codebase — you can verify that yourself; search the code for `fetch(` or
 * **On submit**, it also quietly keeps a backup copy of what you typed, so if 
   the submission fails, your data isn't gone — open the popup and hit Fill.
 * The popup's **This site / Profiles / All sites** tabs list everything saved, 
-  with Fill / Rename / Delete on each, plus a persistent **+ Save current 
-  form** button (only enabled once you've actually typed something).
+  with Fill / Rename / Delete on each, plus a persistent **+ Save current form** button 
+  (only enabled once you've actually typed something).
 * The **Settings** page (right-click the icon → Options, or the gear in the 
   popup) lets you turn detection off entirely, toggle the toolbar badge, 
   export/import your data via **JSON** or human-readable **CSV** files, or 
@@ -57,22 +57,22 @@ codebase — you can verify that yourself; search the code for `fetch(` or
 
 ## What it will never save
 
-* Password fields (`type="password"`) — hard-coded, no setting can override 
+* **Password fields** (`type="password"`) — hard-coded, no setting can override 
   this.
-* Captcha tokens (reCAPTCHA, hCaptcha, Turnstile, etc.) and CSRF/anti-forgery 
+* **Captcha tokens** (reCAPTCHA, hCaptcha, Turnstile, etc.) and CSRF/anti-forgery 
   tokens — these are single-use or regenerate on every load, so saving them 
   is pointless; excluded unconditionally, same as passwords.
-* Fields that look like credit-card numbers, CVV/CVC codes, SSNs, or passport 
-  numbers — active by default; there's an explicit opt-out toggle in Settings 
-  if you want to exclude them.
-* Fields hidden from view (`display:none`, zero size, etc.) — this also 
-  quietly catches most captcha widgets' underlying inputs.
+* **Sensitive-looking fields** (credit-card numbers, CVV/CVC codes, SSNs, or 
+  passport numbers) — **skipped by default**; there is an explicit opt-in 
+  toggle in Settings if you want to include them.
+* **Hidden fields** (`display:none`, zero size, etc.) — this also quietly 
+  catches most captcha widgets' underlying inputs.
 
 ## Saving the same form multiple times, with different data
 
 If you fill out the same form repeatedly with different details (e.g. one 
-registration per person), each time you press **+ Save current form as new 
-entry** in the popup, it creates a **separate, new saved entry** rather than 
+registration per person), each time you press **+ Save current form as new entry**
+in the popup, it creates separate, new saved entry rather than 
 overwriting the last one. Open the popup on that page later and it shows 
 every saved version with a live preview of its field values, so you can pick 
 the right one instead of guessing from a label alone.

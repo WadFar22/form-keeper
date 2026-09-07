@@ -1,5 +1,8 @@
 # Form Keeper
 
+**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh)**  
+**[Install from Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag)**
+
 A small, clean browser extension that remembers what you typed into a form so
 you never have to retype it — whether a submission failed, you're filling the
 same form again, or you're testing the same inputs repeatedly.
@@ -72,7 +75,7 @@ codebase — you can verify that yourself; search the code for `fetch(` or
 
 If you fill out the same form repeatedly with different details (e.g. one 
 registration per person), each time you press **+ Save current form as new entry**
-in the popup, it creates separate, new saved entry rather than 
+in the popup, it creates a separate, new saved entry rather than 
 overwriting the last one. Open the popup on that page later and it shows 
 every saved version with a live preview of its field values, so you can pick 
 the right one instead of guessing from a label alone.

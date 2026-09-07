@@ -1,5 +1,11 @@
 # Form Keeper
 
+<div align="center">
+
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hcjdhmkgcokfjkikoehgcfebfcedjldh?label=Chrome%20Web%20Store&logo=googlechrome&logoColor=white&color=4285F4)](https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh)
+[![Edge Add-ons](https://img.shields.io/badge/Edge%20Add--ons-Available-0078D7?logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag)
+
+</div>
 **[Install from Chrome Web Store](https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh)**  
 **[Install from Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag)**
 

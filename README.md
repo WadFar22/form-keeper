@@ -6,8 +6,6 @@
 [![Edge Add-ons](https://img.shields.io/badge/Edge%20Add--ons-Available-0078D7?logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag)
 
 </div>
-**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh)**  
-**[Install from Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag)**
 
 A small, clean browser extension that remembers what you typed into a form so
 you never have to retype it — whether a submission failed, you're filling the

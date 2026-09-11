@@ -9,6 +9,8 @@
   const ALWAYS_EXCLUDE_PATTERN = /recaptcha|h-?captcha|hcaptcha|turnstile|frc-?captcha|captcha[-_.]?response|\bcsrf\b|xsrf|authenticity_token|__requestverificationtoken|\bviewstate\b|\b_token\b/i;
   const EXCLUDED_TYPES = new Set(["password", "hidden", "submit", "button", "reset", "image", "file"]);
 
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
   let settings = null;
   let siteEnabled = false; 
   let isFilling = false; 
@@ -887,6 +889,7 @@
       const saved = entry.fields[key];
       if (isMergeFill && !saved) continue;
       writeFieldValue(fieldEntry, saved ? saved.value : undefined);
+      await sleep(150);
     }
     return map;
   }
@@ -941,6 +944,7 @@
           fillWatchers.set(el, watcher);
           activeWatchers.push(watcher);
         }
+        await sleep(150);
       }
       return filledAny;
     }

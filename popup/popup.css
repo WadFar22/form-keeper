@@ -10,6 +10,18 @@
   --danger: #e5675a;
 }
 
+:root[data-theme="light"] {
+  --bg: #f4f7f8;
+  --surface: #ffffff;
+  --surface-2: #e9ecef;
+  --border: #ced4da;
+  --text: #1a202c;
+  --muted: #64748b;
+  --accent: #2c977b;
+  --accent-ink: #ffffff;
+  --danger: #dc2626;
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -46,7 +58,7 @@ body {
   justify-content: center;
   cursor: pointer;
 }
-.icon-btn:hover { color: var(--text); border-color: #3a4750; }
+.icon-btn:hover { color: var(--text); border-color: var(--border); }
 
 .tabs {
   display: flex;
@@ -68,7 +80,7 @@ body {
 .tab.active { 
   background: var(--surface-2); 
   color: var(--text); 
-  border-color: #3a4750; 
+  border-color: var(--border); 
   border-bottom: 2px solid var(--accent); 
 }
 
@@ -103,8 +115,7 @@ body {
 .switch-slider {
   position: absolute;
   inset: 0;
-  background: #2a3338;
-  border: 1px solid var(--border);
+  background: var(--border);
   border-radius: 999px;
   transition: background 150ms ease;
 }
@@ -115,7 +126,7 @@ body {
   height: 14px;
   left: 2px;
   top: 2px;
-  background: #ecf1f3;
+  background: var(--text);
   border-radius: 50%;
   transition: transform 150ms ease;
 }
@@ -126,7 +137,7 @@ body {
 .btn-save-current {
   width: 100%;
   background: var(--surface-2);
-  border: 1px dashed #3a4750;
+  border: 1px dashed var(--muted);
   color: var(--accent);
   border-radius: 8px;
   padding: 8px 10px;
@@ -135,7 +146,7 @@ body {
   cursor: pointer;
   font-family: inherit;
 }
-.btn-save-current:hover { border-color: var(--accent); background: #14201d; }
+.btn-save-current:hover { border-color: var(--accent); background: var(--surface); }
 .btn-save-current:disabled {
   color: var(--muted);
   border-color: var(--border);
@@ -159,7 +170,7 @@ body {
   border-radius: 10px;
   padding: 10px 12px;
 }
-.ctx-card.ctx-suggest { border-color: #3a4750; }
+.ctx-card.ctx-suggest { border-color: var(--muted); }
 .ctx-title { font-weight: 700; font-size: 12.5px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
 .ctx-title::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .ctx-body { color: var(--muted); font-size: 11.5px; margin: 0 0 8px; line-height: 1.5; }

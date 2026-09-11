@@ -12,6 +12,7 @@
     });
   });
 
+  const themeSelectEl = document.getElementById("themeSelect");
   const autoDetectEl = document.getElementById("autoDetect");
   const autoPromptEl = document.getElementById("autoPrompt");
   const includeSensitiveEl = document.getElementById("includeSensitive");
@@ -35,6 +36,9 @@
 
   async function loadSettings() {
     const s = await FormKeeperStorage.getSettings();
+    themeSelectEl.value = s.theme || "dark";
+    document.documentElement.setAttribute("data-theme", s.theme || "dark");
+    
     autoDetectEl.checked = s.autoDetect;
     autoPromptEl.checked = s.autoPrompt;
     includeSensitiveEl.checked = s.includeSensitive;
@@ -48,6 +52,12 @@
       await FormKeeperStorage.saveSettings({ [key]: transform(value) });
     });
   }
+
+  themeSelectEl.addEventListener("change", async () => {
+    const val = themeSelectEl.value;
+    document.documentElement.setAttribute("data-theme", val);
+    await FormKeeperStorage.saveSettings({ theme: val });
+  });
 
   wireSetting(autoDetectEl, "autoDetect");
   wireSetting(autoPromptEl, "autoPrompt");
@@ -433,7 +443,7 @@
     renameEntryBtn.addEventListener("click", () => {
       const input = document.createElement("input");
       input.value = entry.label || "";
-      input.style.cssText = "flex: 1; background: #0c1114; color: #ecf1f3; border: 1px solid #263038; border-radius: 4px; padding: 2px 6px; font-size: 14px; font-weight: 600; font-family: inherit; margin-right: 15px;";
+      input.style.cssText = "flex: 1; background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; font-size: 14px; font-weight: 600; font-family: inherit; margin-right: 15px;";
       
       labelEl.replaceWith(input);
       input.focus();
@@ -514,7 +524,7 @@
           renameFieldBtn.addEventListener("click", () => {
             const input = document.createElement("input");
             input.value = field.label || key;
-            input.style.cssText = "flex: 1; background: #0c1114; color: #ecf1f3; border: 1px solid #4fd1b0; border-radius: 4px; padding: 2px 6px; font-size: 12px; font-weight: 600; font-family: inherit; margin-right: 15px;";
+            input.style.cssText = "flex: 1; background: var(--surface-2); color: var(--text); border: 1px solid var(--accent); border-radius: 4px; padding: 2px 6px; font-size: 12px; font-weight: 600; font-family: inherit; margin-right: 15px;";
             
             nameEl.replaceWith(input);
             input.focus();
@@ -543,7 +553,7 @@
           editBtn.addEventListener("click", () => {
             const input = document.createElement("input");
             input.value = Array.isArray(field.value) ? field.value.join(", ") : String(field.value ?? "");
-            input.style.cssText = "flex: 1; background: #0c1114; color: #ecf1f3; border: 1px solid #263038; border-radius: 4px; padding: 2px 6px; font-size: 12px; font-family: inherit;";
+            input.style.cssText = "flex: 1; background: var(--surface-2); color: var(--text); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; font-size: 12px; font-family: inherit;";
             
             valueEl.replaceWith(input);
             input.focus();

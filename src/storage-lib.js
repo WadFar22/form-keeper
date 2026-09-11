@@ -17,6 +17,7 @@ const FK_DEFAULT_SETTINGS = {
   includeSensitive: false,
   mergeFill: false,
   retentionDays: 0,
+  theme: "dark",
 };
 
 function fkUUID() {

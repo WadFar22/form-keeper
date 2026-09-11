@@ -1,4 +1,7 @@
 (async function () {
+  const initSettings = await FormKeeperStorage.getSettings();
+  document.documentElement.setAttribute("data-theme", initSettings.theme || "dark");
+
   const listContainer = document.getElementById("listContainer");
   const entryTemplate = document.getElementById("entryTemplate");
   const emptyTemplate = document.getElementById("emptyTemplate");
@@ -233,7 +236,7 @@ function showToast(msg) {
       let count = mode === "site" ? siteCount : mode === "profiles" ? profilesCount : allCount;
       
       if (count > 0) {
-        tab.innerHTML = `${text} <span style="background: rgba(79, 209, 176, 0.15); color: #4fd1b0; padding: 2px 6px; border-radius: 12px; font-size: 11px; margin-left: 6px; font-weight: 700;">${count}</span>`;
+        tab.innerHTML = `${text} <span style="background: var(--surface-2); color: var(--accent); border: 1px solid var(--accent); padding: 1px 5px; border-radius: 12px; font-size: 11px; margin-left: 6px; font-weight: 700;">${count}</span>`;
       } else {
         tab.textContent = text;
       }
@@ -339,7 +342,7 @@ function showToast(msg) {
     const input = document.createElement("input");
     input.value = entry.label || "";
     input.style.cssText =
-      "width:100%;background:#0c1114;color:#ecf1f3;border:1px solid #263038;border-radius:6px;padding:4px 6px;font-size:13px;font-family:inherit;";
+      "width:100%;background:var(--surface-2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:4px 6px;font-size:13px;font-family:inherit;";
     labelEl.replaceWith(input);
     input.focus();
     input.select();

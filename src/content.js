@@ -268,8 +268,29 @@
   }
 
   function setNativeValue(el, value) {
-    const strVal = String(value ?? "");
+    let strVal = String(value ?? "");
     if (el.value === strVal) return; 
+
+    // --- Angular Material Datepicker Patch ---
+    // Angular's NativeDateAdapter incorrectly parses DD/MM/YYYY strings as MM/DD/YYYY, 
+    // causing the day and month to flip on blur. To bypass this framework bug, 
+    // we detect Material date inputs and feed them an unambiguous ISO 8601 string (YYYY-MM-DD).
+    const isAngularDate = (el.classList && el.classList.contains('mat-datepicker-input')) || 
+                          el.hasAttribute('matinput') || 
+                          el.hasAttribute('data-mat-calendar');
+
+    if (isAngularDate && strVal) {
+      const match = strVal.match(/^(\d{2})[\/\-\.](\d{2})[\/\-\.](\d{4})$/);
+      if (match) {
+        const p1 = parseInt(match[1], 10);
+        const p2 = parseInt(match[2], 10);
+        const y = match[3];
+        if (p1 > 12) strVal = `${y}-${match[2]}-${match[1]}`; // Guaranteed DD/MM/YYYY
+        else if (p2 > 12) strVal = `${y}-${match[1]}-${match[2]}`; // Guaranteed MM/DD/YYYY
+        else strVal = `${y}-${match[2]}-${match[1]}`; // Ambiguous: Default to DD/MM/YYYY to counter the known bug
+      }
+    }
+    // -----------------------------------------
 
     const previousValue = el.value;
     try { el.focus(); } catch (e) {}
@@ -290,6 +311,8 @@
 
     el.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
     el.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+    
+    try { el.blur(); } catch (e) {}
   }
 
   function writeFieldValue(entry, value) {
@@ -960,7 +983,7 @@
     trackFilledFields(entry, fieldsMap);
     
     return true;
-  };
+  }
 
   async function triggerFillSequence(entry, sendResponseCallback = null, isTopFrameWithIframes = false) {
     isFilling = true; hideFieldPopup();

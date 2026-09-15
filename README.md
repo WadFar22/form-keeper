@@ -16,15 +16,6 @@ server, no account, no analytics, and no network request anywhere in this
 codebase — you can verify that yourself; search the code for `fetch(` or 
 `XMLHttpRequest` and you'll find nothing.
 
-## Install it (Chrome or Edge — both are Chromium, so the steps are identical)
-
-1. Unzip this folder somewhere permanent (don't delete it after installing — 
-   the browser loads the extension from these files).
-2. Go to `chrome://extensions` (Chrome) or `edge://extensions` (Edge).
-3. Turn on **Developer mode** (top-right toggle).
-4. Click **Load unpacked** and select the extension folder.
-5. Pin it from the puzzle-piece icon in your toolbar for quick access.
-
 ## Two Ways to Save
 
 * **Global Profiles (Universal):** Saved across all websites. Ideal for your 
@@ -124,3 +115,19 @@ doesn't include it.
   form is filled in or you ask it to.
 
 No `alarms`, no `identity`, no remote code, no third-party libraries.
+
+## Local Development
+
+1. Unzip this folder somewhere permanent (don't delete it after installing — 
+   the browser loads the extension from these files).
+2. Go to `chrome://extensions` (Chrome) or `edge://extensions` (Edge).
+3. Turn on **Developer mode** (top-right toggle).
+4. Click **Load unpacked** and select the extension folder.
+5. Pin it from the puzzle-piece icon in your toolbar for quick access.
+
+<div align="center">
+
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/hcjdhmkgcokfjkikoehgcfebfcedjldh?label=Chrome%20Web%20Store&logo=googlechrome&logoColor=white&color=4285F4)](https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh)
+[![Edge Add-ons](https://img.shields.io/badge/Edge%20Add--ons-Available-0078D7?logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag)
+
+</div>

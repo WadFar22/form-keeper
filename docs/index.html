@@ -7,17 +7,20 @@
   <meta name="description" content="A zero-telemetry, local-first browser extension that saves and instantly autofills repetitive forms.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Upgraded to Plus Jakarta Sans for a premium SaaS look -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-main: #14191c;
-      --bg-card: #1c2327;
-      --border: #2b363d;
-      --accent: #4fd1b0;
-      --accent-hover: #3eb596;
-      --text-main: #ecf1f3;
-      --text-muted: #9ba8b0;
+      --bg-base: #090b0f;
+      --bg-surface: rgba(255, 255, 255, 0.03);
+      --bg-surface-hover: rgba(255, 255, 255, 0.06);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(79, 209, 176, 0.4);
+      --accent-primary: #4fd1b0;
+      --accent-gradient: linear-gradient(135deg, #4fd1b0 0%, #29a385 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
     * {
@@ -27,49 +30,68 @@
     }
 
     body {
-      background-color: var(--bg-main);
+      background-color: var(--bg-base);
       color: var(--text-main);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      /* Premium radial gradient overlay */
+      background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(26, 89, 72, 0.35) 0%, transparent 100%);
+      background-repeat: no-repeat;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
+    }
+
+    /* --- Badge --- */
+    .hero-badge {
+      display: inline-block;
+      background: rgba(79, 209, 176, 0.1);
+      border: 1px solid rgba(79, 209, 176, 0.2);
+      color: var(--accent-primary);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
     }
 
     /* --- Hero Section --- */
     .hero {
       text-align: center;
-      padding: 40px 0 80px;
+      padding: 80px 0 100px;
+      position: relative;
     }
 
     .hero-top {
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       gap: 16px;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
 
     .logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .logo-title {
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--text-main);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 4rem;
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 24px;
@@ -77,146 +99,193 @@
     }
 
     .hero h1 span {
-      color: var(--accent);
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
 
     .hero p {
       font-size: 1.25rem;
       color: var(--text-muted);
-      max-width: 650px;
-      margin: 0 auto 40px;
+      max-width: 680px;
+      margin: 0 auto 48px;
     }
 
+    /* --- Buttons --- */
     .btn {
-      display: inline-block;
-      background-color: var(--accent);
-      color: #0b1512;
-      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-gradient);
+      color: #020617;
+      font-weight: 700;
       font-size: 1.1rem;
-      padding: 16px 32px;
-      border-radius: 8px;
+      padding: 18px 36px;
+      border-radius: 12px;
       text-decoration: none;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      box-shadow: 0 4px 14px rgba(79, 209, 176, 0.2);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px -5px rgba(79, 209, 176, 0.4), 0 8px 10px -6px rgba(79, 209, 176, 0.1);
     }
 
     .btn:hover {
-      background-color: var(--accent-hover);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 35px -5px rgba(79, 209, 176, 0.5), 0 8px 10px -6px rgba(79, 209, 176, 0.2);
     }
 
     .browser-fallback {
       display: flex;
       justify-content: center;
-      gap: 16px;
-      margin-top: 20px;
+      align-items: center;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .browser-fallback span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
     }
 
     .browser-fallback a {
       color: var(--text-muted);
       font-size: 0.9rem;
-      text-decoration: underline;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      padding-bottom: 2px;
+      transition: color 0.2s;
     }
 
-    /* --- Features Section --- */
+    .browser-fallback a:hover {
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    /* --- Features Section (3x2 Grid) --- */
     .features {
-      padding: 60px 0;
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
     .features-grid {
       display: grid;
-      /* Enforces exactly 2 columns for a 2x2 layout on desktop */
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
     .card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
-      transition: border-color 0.2s ease;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 40px 32px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .card:hover {
-      border-color: var(--accent);
+      border-color: var(--border-hover);
+      background: var(--bg-surface-hover);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: inline-block;
+      background: rgba(79, 209, 176, 0.1);
+      width: 56px;
+      height: 56px;
+      line-height: 56px;
+      text-align: center;
+      border-radius: 12px;
+      color: var(--accent-primary);
     }
 
     .card h3 {
-      font-size: 1.3rem;
-      font-weight: 600;
+      font-size: 1.35rem;
+      font-weight: 700;
       margin-bottom: 12px;
       color: var(--text-main);
+      letter-spacing: -0.01em;
     }
 
     .card p {
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
 
     /* --- How It Works --- */
     .how-to {
-      padding: 80px 0;
-      text-align: center;
-    }
-
-    .how-to h2 {
-      font-size: 2.5rem;
-      margin-bottom: 48px;
+      padding: 80px 0 120px;
     }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      text-align: left;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
     }
 
     .step {
-      background-color: var(--bg-main);
-      border: 1px solid var(--border);
-      padding: 24px;
-      border-radius: 12px;
+      background: linear-gradient(180deg, var(--bg-surface) 0%, rgba(255,255,255,0) 100%);
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+      padding: 32px;
+      border-radius: 16px 16px 0 0;
       position: relative;
     }
 
     .step-number {
-      background-color: var(--accent);
-      color: #0b1512;
-      width: 32px;
-      height: 32px;
+      background: var(--accent-gradient);
+      color: #020617;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
+      border-radius: 10px;
       font-weight: 800;
-      margin-bottom: 16px;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(79, 209, 176, 0.3);
     }
 
     .step h4 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      font-weight: 700;
     }
 
     .step p {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     /* --- Footer --- */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 0;
-      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+      padding: 48px 0;
       text-align: center;
-      color: var(--text-muted);
+      background: #050608;
     }
 
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 24px;
-      margin-bottom: 16px;
+      gap: 32px;
+      margin-bottom: 24px;
     }
 
     .footer-links a {
@@ -227,20 +296,27 @@
     }
 
     .footer-links a:hover {
-      color: var(--accent);
+      color: var(--accent-primary);
     }
 
-    /* --- Mobile Responsiveness --- */
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* --- Responsiveness --- */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); border-radius: 16px; border-bottom: 1px solid var(--border-color); }
+      .step { border-radius: 16px; border-bottom: 1px solid var(--border-color); margin-bottom: 16px; }
+    }
+
     @media (max-width: 768px) {
-      .hero-top {
-        justify-content: center;
-      }
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1.1rem; }
-      
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero { padding: 40px 0 60px; }
+      .hero h1 { font-size: 2.75rem; }
+      .hero p { font-size: 1.15rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -248,52 +324,76 @@
 
   <header class="hero">
     <div class="container">
+      <div class="hero-badge">Open Source & Zero Telemetry</div>
+      
       <div class="hero-top">
         <img src="https://lh3.googleusercontent.com/N33qmQnYHRR7WOSvDWTESj3XTh1mL-HnH7Nx7Z1saf2Wjziqv7jIwGucLI5JAQA58n4jIYiuHSj8ksAECG2-YBplz7A=s120" alt="Form Keeper Logo" class="logo">
-        <span class="logo-title">Form Keeper - Local Form AutoFill</span>
+        <span class="logo-title">Form Keeper</span>
       </div>
       
-      <h1>Stop typing the same data <span>over and over.</span></h1>
-      <p>Form Keeper is a zero-telemetry, local-first browser extension that saves and instantly autofills repetitive forms. Never lose data to a crashed tab again.</p>
+      <h1>Stop typing the same data <br><span>over and over.</span></h1>
+      <p>A lightning-fast, local-first browser extension that captures exact webpage layouts and autofills recurring forms instantly. Never lose data to a crashed tab again.</p>
       
       <div id="install-container">
-        <!-- This button gets updated by JavaScript based on the browser -->
+        <!-- Button updates via JS based on browser -->
         <a href="https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh" id="install-btn" class="btn" target="_blank" rel="noopener noreferrer">
-          Add to Chrome
+          Add to Chrome — It's Free
         </a>
       </div>
       
       <div class="browser-fallback">
-        <a href="https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag" target="_blank" rel="noopener noreferrer">Edge Add-ons</a>
+        <span>Available for:</span>
+        <a href="https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh" target="_blank" rel="noopener noreferrer">Chrome</a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag" target="_blank" rel="noopener noreferrer">Microsoft Edge</a>
       </div>
     </div>
   </header>
 
   <section class="features">
-    <div class="container features-grid">
-      <div class="card">
-        <h3>Kill Repetitive Work</h3>
-        <p>Save an exact layout for a recurring portal or map your details onto any random checkout page. Fill complex forms in a single click.</p>
+    <div class="container">
+      <div class="section-header">
+        <h2>Built for heavy workflows.</h2>
       </div>
-      <div class="card">
-        <h3>Crash-Proof Forms</h3>
-        <p>Form Keeper tracks your typing in the background. If your browser crashes or a tab closes, your data is restored instantly.</p>
-      </div>
-      <div class="card">
-        <h3>100% Local-First</h3>
-        <p>No cloud, no accounts, and strictly no telemetry. Everything lives entirely on your device using your browser's local storage.</p>
-      </div>
-      <div class="card">
-        <h3>Privacy-Hardened</h3>
-        <p>The extension actively ignores password fields and sensitive inputs. The codebase is fully open-source for absolute transparency.</p>
+      <div class="features-grid">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Kill Repetitive Work</h3>
+          <p>Save an exact layout for a recurring portal or map your details onto any random checkout page. Fill complex forms in a single click.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>Crash-Proof Forms</h3>
+          <p>Form Keeper tracks your typing in the background. If your browser crashes or a tab closes accidentally, your data is restored instantly.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>100% Local-First</h3>
+          <p>No cloud, no accounts, and strictly no telemetry. Everything lives entirely on your device using your browser's native storage.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">👀</div>
+          <h3>Privacy-Hardened</h3>
+          <p>The extension actively ignores password fields and sensitive inputs. The codebase is fully open-source for absolute transparency.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚙️</div>
+          <h3>React & Angular Ready</h3>
+          <p>Engineered to bypass shadow DOM limits and cleanly inject data into complex frameworks, dynamic dropdowns, and custom date pickers.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌗</div>
+          <h3>Native UI Themes</h3>
+          <p>Features gorgeous, meticulously designed Light and Dark modes that respect your system settings and blend perfectly into your browser.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="how-to">
     <div class="container">
-      <h2>How it works</h2>
+      <div class="section-header">
+        <h2>How it works</h2>
+      </div>
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
@@ -303,7 +403,7 @@
         <div class="step">
           <div class="step-number">2</div>
           <h4>Fill & Save</h4>
-          <p>Fill out your web form normally. Click the floating "Save" button or use the extension popup to capture the layout.</p>
+          <p>Fill out your web form normally. Click the floating "Save" button or use the extension popup to capture the exact layout.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
@@ -313,7 +413,7 @@
         <div class="step">
           <div class="step-number">4</div>
           <h4>Stay Offline</h4>
-          <p>Enjoy a faster workflow knowing none of your keystrokes or form data are ever transmitted to a remote server.</p>
+          <p>Enjoy a radically faster workflow knowing none of your keystrokes or form data are ever transmitted to a remote server.</p>
         </div>
       </div>
     </div>
@@ -322,10 +422,10 @@
   <footer>
     <div class="container">
       <div class="footer-links">
-        <a href="https://github.com/WadFar22/form-keeper" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        <a href="https://github.com/WadFar22/form-keeper" target="_blank" rel="noopener noreferrer">View Source on GitHub</a>
         <a href="https://github.com/WadFar22/form-keeper#privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
       </div>
-      <p>&copy; 2026 Form Keeper. Built for privacy-focused productivity.</p>
+      <p>&copy; 2026 Form Keeper. Built by WadFar for privacy-focused productivity.</p>
     </div>
   </footer>
 
@@ -337,16 +437,14 @@
       const chromeLink = "https://chromewebstore.google.com/detail/form-keeper-%E2%80%94-local-form/hcjdhmkgcokfjkikoehgcfebfcedjldh";
       const edgeLink = "https://microsoftedge.microsoft.com/addons/detail/form-keeper-%E2%80%94-local-form-/lllebjkfiigggcoffmkpamfkcnkdgaag";
 
-      // Detect Edge first because Edge's User Agent also includes "Chrome"
       if (userAgent.indexOf("Edg") > -1) {
-        btn.textContent = "Get it for Microsoft Edge";
+        btn.innerHTML = "Add to Microsoft Edge &mdash; It's Free";
         btn.href = edgeLink;
       } else if (userAgent.indexOf("Chrome") > -1) {
-        btn.textContent = "Add to Chrome";
+        btn.innerHTML = "Add to Chrome &mdash; It's Free";
         btn.href = chromeLink;
       } else {
-        // Fallback for Brave, Vivaldi, Arc, etc.
-        btn.textContent = "Add to Chrome (Chromium)";
+        btn.innerHTML = "Add to Chrome (Chromium) &mdash; It's Free";
         btn.href = chromeLink;
       }
     });

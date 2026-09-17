@@ -7,7 +7,6 @@
   <meta name="description" content="A zero-telemetry, local-first browser extension that saves and instantly autofills repetitive forms.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Upgraded to Plus Jakarta Sans for a premium SaaS look -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
@@ -35,7 +34,6 @@
       font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      /* Premium radial gradient overlay */
       background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(26, 89, 72, 0.35) 0%, transparent 100%);
       background-repeat: no-repeat;
     }
@@ -313,6 +311,7 @@
 
     @media (max-width: 768px) {
       .hero { padding: 40px 0 60px; }
+      .hero-top { flex-direction: column; text-align: center; gap: 12px; }
       .hero h1 { font-size: 2.75rem; }
       .hero p { font-size: 1.15rem; }
       .features-grid { grid-template-columns: 1fr; }
@@ -328,7 +327,7 @@
       
       <div class="hero-top">
         <img src="https://lh3.googleusercontent.com/N33qmQnYHRR7WOSvDWTESj3XTh1mL-HnH7Nx7Z1saf2Wjziqv7jIwGucLI5JAQA58n4jIYiuHSj8ksAECG2-YBplz7A=s120" alt="Form Keeper Logo" class="logo">
-        <span class="logo-title">Form Keeper</span>
+        <span class="logo-title">Form Keeper - Local Form Autofill</span>
       </div>
       
       <h1>Stop typing the same data <br><span>over and over.</span></h1>
@@ -423,14 +422,16 @@
     <div class="container">
       <div class="footer-links">
         <a href="https://github.com/WadFar22/form-keeper" target="_blank" rel="noopener noreferrer">View Source on GitHub</a>
-        <a href="https://github.com/WadFar22/form-keeper#privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="privacy.html">Privacy Policy</a>
       </div>
-      <p>&copy; 2026 Form Keeper. Built by WadFar for privacy-focused productivity.</p>
+      <p>&copy; <span id="current-year"></span> Form Keeper. Built by WadFar for privacy-focused productivity.</p>
     </div>
   </footer>
 
-  <script>
+<script>
     document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
       const btn = document.getElementById("install-btn");
       const userAgent = navigator.userAgent;
       

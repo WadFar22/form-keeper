@@ -11,11 +11,11 @@
   
   <style>
     :root {
-      --bg-base: #030712; /* Deepest dark blue/black */
+      --bg-base: #030712; 
       --card-bg: #0b1121;
       --card-inner: #0f172a;
-      --accent-primary: #10b981; /* Emerald green */
-      --accent-secondary: #3b82f6; /* Blue */
+      --accent-primary: #10b981; 
+      --accent-secondary: #3b82f6; 
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
     }
@@ -92,7 +92,7 @@
     /* --- Hero Section --- */
     .hero {
       text-align: center;
-      padding: 100px 0 120px;
+      padding: 100px 0 100px;
     }
 
     .hero-badge {
@@ -243,9 +243,25 @@
       border-color: var(--text-main);
     }
 
-    /* --- Features Grid with Rotating Borders --- */
+    /* --- Section Headers --- */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    
+    .section-header span {
+      color: var(--accent-primary);
+    }
+
+    /* --- Features Grid --- */
     .features {
-      padding: 80px 0 140px;
+      padding: 60px 0 80px;
     }
 
     .features-grid {
@@ -259,7 +275,7 @@
       border-radius: 16px;
       overflow: hidden;
       background: rgba(255, 255, 255, 0.03);
-      padding: 2px; /* Space for the animated border */
+      padding: 2px; 
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -267,16 +283,12 @@
       transform: translateY(-5px);
     }
 
-    /* The rotating conic gradient layer */
     .card::before {
       content: "";
       position: absolute;
       top: -50%; left: -50%; width: 200%; height: 200%;
       background: conic-gradient(
-        transparent, 
-        transparent, 
-        transparent, 
-        var(--accent-primary)
+        transparent, transparent, transparent, var(--accent-primary)
       );
       animation: rotate-border 4s linear infinite;
       opacity: 0;
@@ -291,7 +303,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* The solid inner background to cover the spinning layer */
     .card-content {
       position: relative;
       background: var(--card-inner);
@@ -324,6 +335,81 @@
     .card p {
       color: var(--text-muted);
       font-size: 1.05rem;
+    }
+
+    /* --- How It Works Section (Premium SaaS Style) --- */
+    .how-to {
+      padding: 80px 0 120px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .step {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 40px 32px;
+      border-radius: 20px;
+      position: relative;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .step-number-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+
+    .step-number-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      border-radius: 12px;
+      filter: blur(8px);
+      opacity: 0.6;
+      z-index: -1;
+      transition: opacity 0.3s;
+    }
+
+    .step:hover .step-number-wrapper::before {
+      opacity: 1;
+      filter: blur(12px);
+    }
+
+    .step-number {
+      background: var(--card-inner);
+      color: var(--text-main);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 1.25rem;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .step h4 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .step p {
+      color: var(--text-muted);
+      font-size: 1rem;
     }
 
     /* --- Footer --- */
@@ -361,13 +447,15 @@
     /* --- Responsiveness --- */
     @media (max-width: 1024px) {
       .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
       .hero { padding: 60px 0 80px; }
       .hero h1 { font-size: 3rem; }
       .features-grid { grid-template-columns: 1fr; }
-      .orb-1, .orb-2 { display: none; } /* Better mobile performance */
+      .steps { grid-template-columns: 1fr; }
+      .orb-1, .orb-2 { display: none; }
     }
   </style>
 </head>
@@ -456,13 +544,51 @@
     </div>
   </section>
 
+  <section class="how-to">
+    <div class="container">
+      <div class="section-header">
+        <h2>How it <span>works</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number-wrapper">
+            <div class="step-number">1</div>
+          </div>
+          <h4>Enable Recording</h4>
+          <p>Open the extension popup and toggle on "Record this site entries" for any website where you want to start tracking forms.</p>
+        </div>
+        <div class="step">
+          <div class="step-number-wrapper">
+            <div class="step-number">2</div>
+          </div>
+          <h4>Fill & Save</h4>
+          <p>Fill out your web form normally. Click the floating "Save" button or use the extension popup to capture the exact layout.</p>
+        </div>
+        <div class="step">
+          <div class="step-number-wrapper">
+            <div class="step-number">3</div>
+          </div>
+          <h4>Right-Click to Fill</h4>
+          <p>The next time you visit, simply right-click anywhere on the page to instantly inject your saved data, or use the popup.</p>
+        </div>
+        <div class="step">
+          <div class="step-number-wrapper">
+            <div class="step-number">4</div>
+          </div>
+          <h4>Stay Offline</h4>
+          <p>Enjoy a radically faster workflow knowing none of your keystrokes or form data are ever transmitted to a remote server.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container">
       <div class="footer-links">
         <a href="https://github.com/WadFar22/form-keeper" target="_blank" rel="noopener noreferrer">View Source on GitHub</a>
         <a href="privacy.html">Privacy Policy</a>
       </div>
-      <p>&copy; <span id="current-year"></span> Form Keeper. Built for privacy-focused productivity.</p>
+      <p>&copy; <span id="current-year"></span> Form Keeper. Built by WadFar for privacy-focused productivity.</p>
     </div>
   </footer>
 
